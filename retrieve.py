@@ -1,5 +1,4 @@
 import sys, argparse, os
-#from Bio import SeqIO
 
 #Function to parse command line arguments
 def check_arg(args=None):
@@ -14,15 +13,15 @@ def check_arg(args=None):
 arguments = check_arg(sys.argv[1:])
 infile = arguments.input
 
-i=0
+i=0 #empty counter for file
 with open (infile, 'r') as f:
     file=f.read().split() #reads in lines removing spaces and \n values
 
 while i<2:
-    getfile=('wget https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fastq?acc='+file[i])
-    name=('mv fastq?acc='+file[i]+' '+file[i])
-    split=('fastq-dump --split-files '+file[i])
-    os.system(getfile)
+    getfile=('wget https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fastq?acc='+file[i]) #retrieves each SSR file in .gz format
+    name=('mv fastq?acc='+file[i]+' '+file[i]) #renames default download name
+    split=('fastq-dump --split-files '+file[i]) #splits .gz into two paired-end fastq files 
+    os.system(getfile) #calling the commands
     os.system(name)
     os.system(split)
     i+=1
