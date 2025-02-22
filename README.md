@@ -5,6 +5,6 @@ To retrieve paired-end fastq files from NCBI, place the SSR numbers in a file wi
 >SSR123456<br />
 >SSR654321
 
-To call retrieve.py, the format is: python retrieve.py --input (your input file here)<br />
-Remember not to include ( or ) in the command line<br />
-An example using SSREX.txt: python retrieve.py --input SSREX.txt
+To call retrieve.py, the format is: python retrieve.py --input (your input file here)<br /><br />
+Remember not to include "(" or ")" in the command<br /><br />
+An example using SSREX.txt: $\color{green}{\textsf{python retrieve.py --input SSREX.txt}}$
