@@ -1,5 +1,5 @@
 import sys, argparse, os
-from Bio import SeqIO
+#from Bio import SeqIO
 
 #Function to parse command line arguments
 def check_arg(args=None):
