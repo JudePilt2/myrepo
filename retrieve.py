@@ -13,10 +13,19 @@ def check_arg(args=None):
 arguments = check_arg(sys.argv[1:])
 infile = arguments.input
 
-i=0 #empty counter for file
 with open (infile, 'r') as f:
     file=f.read().split() #reads in lines removing spaces and \n values
 
+
+dpath='PipelineProject_Jude_Piltingsrud' 
+if os.path.exists(dpath) and os.path.isdir(dpath): #checks for directory used to store generated files
+    os.chdir('PipelineProject_Jude_Piltingsrud')   #moves to directory, existing files will be written over
+else:
+    os.system('mkdir PipelineProject_Jude_Piltingsrud') #Makes directory for generated files
+    os.chdir('PipelineProject_Jude_Piltingsrud')        #moves into created directory
+
+
+i=0 #empty counter for file
 while i<2:
     getfile=('wget https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fastq?acc='+file[i]) #retrieves each SSR file in .gz format
     name=('mv fastq?acc='+file[i]+' '+file[i]) #renames default download name
