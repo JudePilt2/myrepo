@@ -18,12 +18,12 @@ with open (infile, 'r') as f:
     file=f.read().split() #reads in lines removing spaces and \n values
 
 while i<2:
-#    getfile=('wget https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fastq?acc='+file[i]) #retrieves each SSR file in .gz format
-#    name=('mv fastq?acc='+file[i]+' '+file[i]) #renames default download name
-#    split=('fastq-dump --split-files '+file[i]) #splits .gz into two paired-end fastq files 
-#    os.system(getfile) #calling the commands
-#    os.system(name)
-#    os.system(split)
+    getfile=('wget https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fastq?acc='+file[i]) #retrieves each SSR file in .gz format
+    name=('mv fastq?acc='+file[i]+' '+file[i]) #renames default download name
+    split=('fastq-dump --split-files '+file[i]) #splits .gz into two paired-end fastq files 
+    os.system(getfile) #calling the commands
+    os.system(name)
+    os.system(split)
     i+=1
 
 name1=('mv '+file[0]+'_1.fastq'+' SSR1_1.fastq') #renames processed .fastq files to work with wrapper.py
