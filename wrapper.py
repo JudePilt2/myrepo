@@ -1,5 +1,8 @@
+#tools that must be installed: bowtie2(apt), spades.py, bedtools, samtools
+#packages that must be installed: Biopython, build-essential
+#bedtools is not available for windows, wrapper.py must be ran through linux
 import sys, os, subprocess
-#from Bio import SeqIO
+from Bio import SeqIO
 
 dpath='PipelineProject_Jude_Piltingsrud'
 if os.path.exists(dpath) and os.path.isdir(dpath):
@@ -20,8 +23,8 @@ os.system('bowtie2 -x HCMV_index -1 SRR1_1.fastq -2 SRR1_2.fastq -S d1alligned.s
 os.system('bowtie2 -x HCMV_index -1 SRR2_1.fastq -2 SRR2_2.fastq -S d2alligned.sam')
 
 #convert sam file to bam file and sort/filter mapped reads
-os.system('samtools view -bS d1alligned.sam | samtools view -b -F 4 -o d1mapped.bam') #-bS means input is sam and output is bam, -F 4 excludes(-F) unmapped reads(4), -o is output file
-os.system('samtools view -bS d2alligned.sam | samtools view -b -F 4 -o d2mapped.bam')
+os.system('samtools view -Sb d1alligned.sam | samtools view -b -F 4 -o d1mapped.bam') #-Sb means input is sam and output is bam, -F 4 excludes(-F) unmapped reads(4), -o is output file
+os.system('samtools view -Sb d2alligned.sam | samtools view -b -F 4 -o d2mapped.bam')
 
 #uses subprocess b/c without using subprocess variables don't print to file properly
 c1='grep "^@SRR" SRR1_1.fastq SRR1_2.fastq | wc -l' #lists all lines starting with @SRR and then counts the lines
@@ -32,13 +35,42 @@ c3='samtools view -c d1mapped.bam'                                  #counts numb
 bg=subprocess.check_output(c3, shell=True).decode('utf-8').strip()
 c4='samtools view -c d2mapped.bam'
 be=subprocess.check_output(c4, shell=True).decode('utf-8').strip()
-
-
+os.system('rm *.sam') #cleanup
 output1=f"Donor 1 (2dpi) had {bc} read pairs before Bowtie2 filtering and {bg} read pairs after" #output formatting
-output2=f"Donor 1 (2dpi) had {bz} read pairs before Bowtie2 filtering and {be} read pairs after"
+output2=f"Donor 1 (6dpi) had {bz} read pairs before Bowtie2 filtering and {be} read pairs after"
+
+
+#SPADES
+os.system('bedtools bamtofastq -i d1mapped.bam -fq d1mapped.fastq') #spades requires fastq file as far as I can tell, and bedtools is the way to convert the bam files
+os.system('bedtools bamtofastq -i d2mapped.bam -fq d2mapped.fastq')
+#spades='spades.py --rna -s d1mapped.fastq -s d2mapped.fastq -k 99 -o spades_output' #not sure if I'm supposed to write the output to log or write the command used to log
+#log='PipelineProject.log'
+#with open(log, 'a') as log: #'a' for append (don't overwrite what I already have in the file)
+#    subprocess.run(spades, shell=True, stdout=log, stderr=log)
+os.system('spades.py --rna -s d1mapped.fastq -s d2mapped.fastq -k 99 -o spades_output') #-s for the differing lengths of reads, --rna b/c rna, -k for kmer count, -o for output file
+output3=f"Bash command used to run SPAdes: spades.py --rna -s d1mapped.fastq -s d2mapped.fastq -k 99 -o spades_output"
 
 outputfile='PipelineProject.log' #output printing
 with open(outputfile, 'w') as out:
-    out.write(output1+'\n'+output2)
+    out.write(output1+'\n'+output2+'\n\n'+output3+'\n')
 
-os.system('rm *.sam')
+#contig calculations
+def ccalc(input_fasta, log_file):
+    ccount = 0
+    tlen = 0
+    # Iterate over each contig in the input FASTA file
+    for f in SeqIO.parse(input_fasta, "fasta"):
+        clen = len(f.seq)
+        if clen > 1000:
+            ccount += 1
+            tlen += clen
+    # Write the results to the log file
+    with open(log_file, 'a') as log:
+        log.write(f'There are {ccount} contigs > 1000 bp in the assembly.\n')
+        log.write(f'There are {tlen} bp in the assembly.\n')
+
+# Replace 'spades_output/scaffolds.fasta' with the path to your SPAdes scaffolds file
+input_fasta = 'spades_output/transcripts.fasta'
+log_file = 'PipelineProject.log'
+ccalc(input_fasta, log_file)
+
