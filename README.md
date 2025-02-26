@@ -23,4 +23,5 @@ To run Wrapper.py:<br />
 >SSR1_2.fastq<br />
 >SSR2_1.fastq<br />
 >SSR2_2.fastq<br />
+
 Results will be accessable in \PipelineProject_Jude_Piltingsrud\PipelineProject.log
