@@ -29,10 +29,10 @@ i=0 #empty counter for file
 while i<2:
     os.system('wget https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fastq?acc='+file[i]) #retrieves each SSR file in .gz format
     os.system('mv fastq?acc='+file[i]+' '+file[i]) #renames default download name
-    os.system('fastq-dump --split-files '+file[i]) #splits .gz into two paired-end fastq files
+    os.system('fasterq-dump --split-files '+file[i]) #splits .gz into two paired-end fastq files
     i+=1
 
-os.system('mv '+file[0]+'_1.fastq'+' SSR1_1.fastq') #renames processed .fastq files to work with wrapper.py
-os.system('mv '+file[0]+'_2.fastq'+' SSR1_2.fastq')
-os.system('mv '+file[1]+'_1.fastq'+' SSR2_1.fastq')
-os.system('mv '+file[1]+'_2.fastq'+' SSR2_2.fastq')
+os.system('mv '+file[0]+'_1.fastq'+' SRR1_1.fastq') #renames processed .fastq files to work with wrapper.py
+os.system('mv '+file[0]+'_2.fastq'+' SRR1_2.fastq')
+os.system('mv '+file[1]+'_1.fastq'+' SRR2_1.fastq')
+os.system('mv '+file[1]+'_2.fastq'+' SRR2_2.fastq')
