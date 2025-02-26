@@ -1,5 +1,3 @@
-#tools that must be installed: BLAST+, ncbi-datasets-cli, unzip, 
-#for retrieve.py: SRA Toolkit
 import sys, os, subprocess
 from Bio import SeqIO
 
@@ -84,4 +82,3 @@ os.system('blastn -query long_cont.fasta -db betaherpesvirinae -outfmt "6 sacc p
 
 os.system('rm *.fna *.ndb *.nhr *.nin *.not *.nsq *.ntf *.nto *.bam *.sam *.bt2 *.txt *.zip *.md d1for.fastq d1rev.fastq d2for.fastq d2rev.fastq long_cont.fasta NC_006273.2.fasta') #cleanup files that aren't input/output
 os.system('rm -r ncbi_dataset spades_output')
-#todo: re-upload retrieve.py w/ proper file renaming, write + update readme
