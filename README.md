@@ -17,11 +17,11 @@ An example using SSREX.txt: $\color{green}{\textsf{python retrieve.py --input SS
 >tools that must be installed: Biopython, bowtie2, SPAdes.py, samtools, BLAST+, ncbi-datasets-cli, and unzip<br />
 
 To run Wrapper.py:<br />
-1) Make sure wrapper.py and retrieve.py are in the same location and run retrieve.py, don't move the directory it creates.<br />
-2) Or create a directory named \"PipelineProject_Jude_Piltingsrud\" with your files named:<br />
+1) Make sure wrapper.py and retrieve.py are in the same location and run retrieve.py, don't move the directory it creates.<br /> Or create a directory named \"PipelineProject_Jude_Piltingsrud\" in the same location as wrapper.py with your files in the directory renamed:<br />
 >SSR1_1.fastq<br />
 >SSR1_2.fastq<br />
 >SSR2_1.fastq<br />
 >SSR2_2.fastq<br />
 
+2) Run wrapper.py with command: $\color{green}{\textsf{python wrapper.py}}$<br /><br />
 Results will be accessable in \PipelineProject_Jude_Piltingsrud\PipelineProject.log
