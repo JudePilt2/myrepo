@@ -3,6 +3,7 @@
 ## Retrieving SSR paired-end fastq files
 >[!WARNING]
 >SRA Toolkit must be installed to run retrieve.py<br />
+
 To retrieve paired-end fastq files from NCBI, place the SSR numbers in a file with retrieve.py in this format:
 >SSR123456<br />
 >SSR654321
@@ -15,4 +16,10 @@ An example using SSREX.txt: $\color{green}{\textsf{python retrieve.py --input SS
 >[!WARNING]
 >tools that must be installed: Biopython, bowtie2, SPAdes.py, samtools, BLAST+, ncbi-datasets-cli, and unzip<br />
 
-To run Wrapper.py: \nMake sure wrapper.py and retrieve.py are in the same location and run retrieve.py, don't move the directory it creates\nOr create a directory named \"PipelineProject_Jude_Piltingsrud\" with your files named:\nSSR1_1.fastq\nSSR1_2.fastq\nSSR2_1.fastq\nSSR2_2.fastq
+To run Wrapper.py:<br />
+Make sure wrapper.py and retrieve.py are in the same location and run retrieve.py, don't move the directory it creates<br />
+Or create a directory named \"PipelineProject_Jude_Piltingsrud\" with your files named:<br />
+SSR1_1.fastq<br />
+SSR1_2.fastq<br />
+SSR2_1.fastq<br />
+SSR2_2.fastq
