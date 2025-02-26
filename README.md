@@ -11,5 +11,6 @@ An example using SSREX.txt: $\color{green}{\textsf{python retrieve.py --input SS
 
 ## Wrapper.py
 >[!WARNING]
->tools that must be installed: Biopython, bowtie2, SPAdes.py, bedtools, samtools<br />
->bedtools is not available for windows, wrapper.py must be ran through linux
+>tools that must be installed: Biopython, bowtie2, SPAdes.py, samtools, BLAST+, ncbi-datasets-cli, and unzip<br />
+
+
