@@ -24,4 +24,5 @@ To run Wrapper.py:<br />
 >SSR2_2.fastq<br />
 
 2) Run wrapper.py with command: $\color{green}{\textsf{python wrapper.py}}$<br /><br />
+
 Results will be accessable in \PipelineProject_Jude_Piltingsrud\PipelineProject.log
