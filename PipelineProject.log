@@ -1,7 +1,7 @@
 Donor 1 (2dpi) had 4518574 read pairs before Bowtie2 filtering and 3672940 read pairs after
 Donor 1 (6dpi) had 4009060 read pairs before Bowtie2 filtering and 2868934 read pairs after
 
-Bash command used to run SPAdes: spades.py --rna -s d1mapped.fastq -s d2mapped.fastq -k 99 -o spades_output
+Bash command used to run SPAdes: spades.py --rna -1 d1for.fastq -2 d1rev.fastq -1 d2for.fastq -2 d2rev.fastq -k 99 -o spades_output
 There are 51 contigs > 1000 bp in the assembly.
 There are 204530 bp in the assembly.
 
