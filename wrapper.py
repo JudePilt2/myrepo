@@ -65,7 +65,7 @@ def ccalc(input_fasta, log_file): #contig calculations for part 4&5
         log.write(f'There are {tlen} bp in the assembly.\n\n')
     return long_cont #returns longest conting (string) for part 5
 
-input_fasta = 'spades_output/transcripts.fasta' #var for calling ccalc, SPAdes output
+input_fasta = 'spades_output/contigs.fasta' #var for calling ccalc, SPAdes output
 log_file = 'PipelineProject.log'                #var for calling ccalc, outfile
 
 long_cont=ccalc(input_fasta, log_file)          #call ccalc and save longest contig string to var
