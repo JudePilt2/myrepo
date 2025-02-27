@@ -38,7 +38,7 @@ output2=f"Donor 1 (6dpi) had {bz} read pairs before Bowtie2 filtering and {be} r
 os.system('samtools fastq -@ 8 d1sort.bam \-1 d1for.fastq \-2 d1rev.fastq \-0 /dev/null -s /dev/null -n') #splits filtered/sorted bam files into fastq files for SPAdes
 os.system('samtools fastq -@ 8 d2sort.bam \-1 d2for.fastq \-2 d2rev.fastq \-0 /dev/null -s /dev/null -n')
 os.system('spades.py --rna -1 d1for.fastq -2 d1rev.fastq -1 d2for.fastq -2 d2rev.fastq -k 99 -o spades_output') #runs spades, --rna for type of info, -k 99 for kmers, -o for output
-output3=f"Bash command used to run SPAdes: spades.py --rna -s d1mapped.fastq -s d2mapped.fastq -k 99 -o spades_output" #output formatting
+output3=f"Bash command used to run SPAdes: spades.py --rna -1 d1for.fastq -2 d1rev.fastq -1 d2for.fastq -2 d2rev.fastq -k 99 -o spades_output" #output formatting
 
 
 outputfile='PipelineProject.log' #output printing
